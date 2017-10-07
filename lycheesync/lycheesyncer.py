@@ -519,14 +519,15 @@ class LycheeSyncer:
                     logger.debug("check orphan: %s", f)
                     file_name = os.path.basename(f)
                     # check if DB photo exists
-                    if not self.dao.photoExistsByName(file_name):
+                    print(f, file_name)
+                    if not self.dao.photoExistsByFileName(file_name):
                         # if not delete photo (or link)
                         self.deleteFiles([file_name])
                         logger.info("%s deleted. Wasn't existing in DB", f)
 
                     # if broken link
                     if os.path.lexists(f) and not(os.path.exists(f)):
-                        id = self.dao.photoExistsByName(file_name)
+                        id = self.dao.photoExistsByFileName(file_name)
                         # if exists in db
                         if id:
                             ps = {}

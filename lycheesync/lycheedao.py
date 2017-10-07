@@ -38,6 +38,7 @@ class LycheeDAO:
                 logger.error("db: %s", self.conf['db'])
                 logger.error("unix_socket: %s", self.conf['dbSocket'])
                 self.db = pymysql.connect(host=self.conf['dbHost'],
+                                          port=self.conf.get('dbPort', 3306),
                                           user=self.conf['dbUser'],
                                           passwd=self.conf['dbPassword'],
                                           db=self.conf['db'],
@@ -47,6 +48,7 @@ class LycheeDAO:
             else:
                 logger.debug("Connection to db in NO SOCKET mode")
                 self.db = pymysql.connect(host=self.conf['dbHost'],
+                                          port=self.conf.get('dbPort', 3306),
                                           user=self.conf['dbUser'],
                                           passwd=self.conf['dbPassword'],
                                           db=self.conf['db'],
@@ -269,11 +271,11 @@ class LycheeDAO:
         finally:
             return res
 
-    def photoExistsByName(self, photo_name):
+    def photoExistsByFileName(self, photo_name):
         res = None
         try:
             cur = self.db.cursor()
-            cur.execute("select id from lychee_photos where title=%s", (photo_name))
+            cur.execute("select id from lychee_photos where url=%s", (photo_name))
             row = cur.fetchall()
             if len(row) != 0:
                 logger.debug("photoExistsByName %s", row)
