@@ -217,7 +217,9 @@ class LycheePhoto:
                         if decode == "ExposureTime":
                             self.exif.exposure = value[0]
                         if decode == "ShutterSpeedValue":
-                            (n,d) = value
+                            logger.debug(value)
+                            n = value[0]
+                            d = value[1] if len(value)==2 else 1
                             s = 2 ** (n/d)
                             s = decimal.Decimal(s).quantize(decimal.Decimal('1'), rounding=decimal.ROUND_05UP)
                             if s <= 1:

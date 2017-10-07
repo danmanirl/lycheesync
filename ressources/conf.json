@@ -1,8 +1,7 @@
 {
-    "db":"lycheetest",
-    "dbUser":"lycheetest",
-    "dbPassword":"lycheetest",
-    "dbPort": 3333,
+    "db":"lychee",
+    "dbUser":"lycheeuser",
+    "dbPassword":"2GqQdC",
     "dbHost":"localhost",
     "thumbQuality":80,
     "publicAlbum": 0,

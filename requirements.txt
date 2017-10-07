@@ -1,4 +1,4 @@
-pymysql==0.7.1
+pymysql
 click==6.2
 pillow==4.3.0
 python-dateutil
